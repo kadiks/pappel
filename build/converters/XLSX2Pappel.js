@@ -88,29 +88,7 @@ var XLSX2Pappel = function (_Converter) {
       });
 
       this._logger.info('<< #convert');
-
       return newJson;
-
-      // Put all key in language : [{key : {lang1: "value", lang2 : "value"}}] to {lang1: {key: "value"}, lang2: {key: "value"}}
-
-      var orderByLanguage = {};
-
-      for (var j = 0; j < columns.length; j++) {
-
-        for (var key in newJson) {
-          //logger.debug('key', key);
-          //logger.debug('orderByLanguage', orderByLanguage);
-          //logger.debug('newJson[key][lang]', newJson[key][lang]);
-          for (var lang in newJson[key]) {
-            if (!orderByLanguage.hasOwnProperty(lang)) {
-              orderByLanguage[lang] = {};
-            }
-            orderByLanguage[lang][key] = newJson[key][lang];
-          }
-        }
-      }
-
-      return orderByLanguage;
     }
   }]);
 

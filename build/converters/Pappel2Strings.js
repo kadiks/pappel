@@ -38,7 +38,6 @@ var Pappel2Strings = function (_Converter) {
    * @param {Object} params
    * @param {Object} params.pappel
    * @param {String} [params.language='']
-   * @param {Boolean} [params.pretty=false] 
    */
 
 

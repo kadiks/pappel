@@ -6,6 +6,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 /**
  * @class Pappel.Keys
+ *
+ * @param {Object} params
+ * @param {Number} params.loggerLevel
  */
 
 var Keys = function () {
