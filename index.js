@@ -1,9 +1,9 @@
 module.exports = {
   Converter: {
-    XLS2Pappel: require('./lib/converters/XLSX2Pappel'),
-    Pappel2AndroidXML: require('./lib/converters/Pappel2AndroidXML'),
-    Pappel2Strings: require('./lib/converters/Pappel2Strings'),
-    Pappel2ReactNativeLocalization: require('./lib/converters/Pappel2ReactNativeLocalization')
+    XLS2Pappel: require('./build/converters/XLSX2Pappel'),
+    Pappel2AndroidXML: require('./build/converters/Pappel2AndroidXML'),
+    Pappel2Strings: require('./build/converters/Pappel2Strings'),
+    Pappel2ReactNativeLocalization: require('./build/converters/Pappel2ReactNativeLocalization')
   },
-  Keys: require('./lib/Keys')
+  Keys: require('./build/Keys')
 };
