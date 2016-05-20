@@ -147,7 +147,7 @@ var Vars = function () {
     }
 
     /**
-     * @method transformAnonymousPappel2Strings
+     * @method transformAnonymousPappel2ReactNativeLocalization
      *
      * @param {Object} params
      * @param {String} params.str

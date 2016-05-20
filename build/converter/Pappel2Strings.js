@@ -6,10 +6,6 @@ var _Root = require('./Root');
 
 var _Root2 = _interopRequireDefault(_Root);
 
-var _Vars = require('../Vars');
-
-var _Vars2 = _interopRequireDefault(_Vars);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -17,39 +13,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @class Pappel.Converter.Pappel2ReactNativeLocalization
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @class Pappel.Converter.Pappel2Strings
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @extends Pappel.Converter.Root
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @use Pappel.Vars
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
+var Pappel2Strings = function (_Converter) {
+  _inherits(Pappel2Strings, _Converter);
 
-var Pappel2ReactNativeLocalization = function (_Converter) {
-  _inherits(Pappel2ReactNativeLocalization, _Converter);
+  function Pappel2Strings(params) {
+    _classCallCheck(this, Pappel2Strings);
 
-  function Pappel2ReactNativeLocalization(params) {
-    _classCallCheck(this, Pappel2ReactNativeLocalization);
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Pappel2ReactNativeLocalization).call(this, params));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Pappel2Strings).call(this, params));
 
     _this._logger.setPrefix({
-      prefix: 'Pappel.Converter.Pappel2ReactNativeLocalization'
+      prefix: 'Pappel.Converter.Pappel2Strings'
     });
-    _this._vars = new _Vars2.default();
     return _this;
   }
 
-  /**
-   * @property _logger
-   * @private
-   */
-
-  /**
-   * @property _vars
-   * @private
-   */
-
-  _createClass(Pappel2ReactNativeLocalization, [{
+  _createClass(Pappel2Strings, [{
     key: 'convert',
 
 
@@ -58,54 +41,68 @@ var Pappel2ReactNativeLocalization = function (_Converter) {
      *
      * @param {Object} params
      * @param {Object} params.pappel
+     * @param {String} [params.language='']
      */
     value: function convert(params) {
       this._logger.info('>> #convert');
       var o = params || {},
           pappel = o.pappel || null,
-          format = {};
+          language = o.language || null,
+          possibleLanguages = null;
 
       if (pappel === null) {
         return null;
       }
 
-      for (var key in pappel) {
-        var pKey = pappel[key];
-        for (var lang in pKey) {
-          if (!format.hasOwnProperty(lang)) {
-            format[lang] = {};
-          }
-          format[lang][key] = this.transformString({
-            str: pKey[lang]
-          });
-        }
+      possibleLanguages = Object.keys(pappel[Object.keys(pappel)[0]]);
+
+      if (language === null || possibleLanguages.indexOf(language) === -1) {
+        language = possibleLanguages[0];
       }
 
-      var content = JSON.stringify(format, null, 4);
+      var file = '';
+
+      for (var key in pappel) {
+        var transformedString = this.transformString({
+          str: pappel[key][language]
+        });
+        file += ['"', key, '" = "', transformedString, '";', "\r\n"].join('');
+      }
 
       this._logger.info('<< #convert');
-      return content;
+      return file;
     }
+
+    /**
+     * @method transformString
+     * 
+     * @param {Object} params
+     * @param {String} params.str
+     */
+
   }, {
     key: 'transformString',
     value: function transformString(params) {
-      return this._vars.transformAnonymousPappel2ReactNativeLocalization({
+      this._logger.info('>> #transformString');
+      var tStr = this._vars.transformAnonymousPappel2Strings({
         str: params.str
       });
+      this._logger.info('<< #transformString');
+      return tStr;
     }
   }, {
     key: 'contentBoilerplateBefore',
     get: function get() {
-      return '// Generated by Pappel.io' + "\r\n" + "import Localization from 'react-native-localization';" + "\r\n" + 'let I18n = new Localization(' + "\r\n";
+      return '/*' + "\r\n" + '  Localizable.strings' + "\r\n" + "\r\n" + '  Generated by Pappel.io' + "\r\n" + '  */' + "\r\n";
     }
   }, {
     key: 'contentBoilerplateAfter',
     get: function get() {
-      return "\r\n" + ');' + "\r\n" + 'module.exports = I18n;';
+      return '';
     }
   }]);
 
-  return Pappel2ReactNativeLocalization;
+  return Pappel2Strings;
 }(_Root2.default);
 
-module.exports = Pappel2ReactNativeLocalization;
+module.exports = Pappel2Strings;

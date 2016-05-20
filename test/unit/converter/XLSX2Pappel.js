@@ -5,7 +5,7 @@ var
 
 describe('XLSX2Pappel', function() {
 
-  var libLocation = ['../../..', libSource, 'converters/XLSX2Pappel'].join('/'),
+  var libLocation = ['../../..', libSource, 'converter/XLSX2Pappel'].join('/'),
     Converter = require(libLocation),
     fixturePath = [__dirname, '../..', 'fixtures/'].join('/'),
     fs = require('fs'),

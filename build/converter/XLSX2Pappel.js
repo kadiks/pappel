@@ -6,9 +6,9 @@ var _Root = require('./Root');
 
 var _Root2 = _interopRequireDefault(_Root);
 
-var _Vars = require('../Vars');
+var _xlsx = require('xlsx');
 
-var _Vars2 = _interopRequireDefault(_Vars);
+var _xlsx2 = _interopRequireDefault(_xlsx);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17,99 +17,79 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @class Pappel.Converter.Pappel2AndroidXML
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @class Pappel.Converter.XLSX2Pappel
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @extends Pappel.Converter.Root
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @use Pappel.Vars
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
+var XLSX2Pappel = function (_Converter) {
+  _inherits(XLSX2Pappel, _Converter);
 
-var Pappel2AndroidXML = function (_Converter) {
-  _inherits(Pappel2AndroidXML, _Converter);
+  function XLSX2Pappel(params) {
+    _classCallCheck(this, XLSX2Pappel);
 
-  function Pappel2AndroidXML(params) {
-    _classCallCheck(this, Pappel2AndroidXML);
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Pappel2AndroidXML).call(this, params));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(XLSX2Pappel).call(this, params));
 
     _this._logger.setPrefix({
-      prefix: 'Pappel.Converter.Pappel2AndroidXML'
+      prefix: 'Pappel.Converter.XLSX2Pappel'
     });
-    _this._vars = new _Vars2.default();
     return _this;
   }
 
-  _createClass(Pappel2AndroidXML, [{
+  /**
+   * @method convert 
+   *
+   * @param {Object} params
+   * @param {Object} params.workbook
+   */
+
+
+  _createClass(XLSX2Pappel, [{
     key: 'convert',
-
-
-    /**
-     * @method convert 
-     *
-     * @param {Object} params
-     * @param {Object} params.pappel
-     * @param {String} [params.language='']
-     */
     value: function convert(params) {
+      var _this2 = this;
+
       this._logger.info('>> #convert');
       var o = params || {},
-          pappel = o.pappel || null,
-          language = o.language || null,
-          possibleLanguages = null;
+          workbook = o.workbook || null;
 
-      if (pappel === null) {
+      if (workbook === null) {
         return null;
       }
 
-      possibleLanguages = Object.keys(pappel[Object.keys(pappel)[0]]);
+      var first_sheet_name = workbook.SheetNames[0];
+      var worksheet = workbook.Sheets[first_sheet_name];
+      var json = _xlsx2.default.utils.sheet_to_json(worksheet);
 
-      if (language === null || possibleLanguages.indexOf(language) === -1) {
-        language = possibleLanguages[0];
-      }
+      var newJson = {};
+      var columns = [];
 
-      var file = '';
-
-      for (var key in pappel) {
-        var transformedString = this.transformString({
-          str: pappel[key][language]
+      json.forEach(function (line) {
+        //console.log('Pappel.Converter.XLSX2Pappel#convert line', line);
+        if (line.key.substr(0, 2) == '//') {
+          return;
+        }
+        var safeKey = _this2._keys.getSafeKey({
+          key: line.key
         });
-        file += ["\t", '<string name="', key, '">', transformedString, '</string>', "\r\n"].join('');
-      }
+        newJson[safeKey] = {};
+        for (var i in line) {
+          if (i !== 'key') {
+            newJson[safeKey][i] = line[i].replace(/{{[\w ]+}}/gi, '%@');
+
+            if (columns.indexOf(i) === -1) {
+              columns.push(i);
+            }
+          }
+        }
+      });
 
       this._logger.info('<< #convert');
-      return file;
-    }
-
-    /**
-     * @method transformString
-     * 
-     * @param {Object} params
-     * @param {String} params.str
-     */
-
-  }, {
-    key: 'transformString',
-    value: function transformString(params) {
-      this._logger.info('>> #transformString');
-      var tStr = this._vars.transformAnonymousPappel2AndroidXML({
-        str: params.str
-      });
-      this._logger.info('<< #transformString');
-      return tStr;
-    }
-  }, {
-    key: 'contentBoilerplateBefore',
-    get: function get() {
-      return '<?xml version="1.0" encoding="utf-8"?>' + "\r\n" + '<resources>' + "\r\n";
-    }
-  }, {
-    key: 'contentBoilerplateAfter',
-    get: function get() {
-      return '</resources>';
+      return newJson;
     }
   }]);
 
-  return Pappel2AndroidXML;
+  return XLSX2Pappel;
 }(_Root2.default);
 
-module.exports = Pappel2AndroidXML;
+module.exports = XLSX2Pappel;

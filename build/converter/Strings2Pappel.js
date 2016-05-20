@@ -6,10 +6,6 @@ var _Root = require('./Root');
 
 var _Root2 = _interopRequireDefault(_Root);
 
-var _Keys = require('../Keys');
-
-var _Keys2 = _interopRequireDefault(_Keys);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -17,82 +13,81 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @class Pappel.Converter.XLSX2Pappel
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @class Pappel.Converter.Strings2Pappel
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @extends Pappel.Converter.Root
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
-var XLSX = require('xlsx');
+var Strings = require('i18n-strings-files');
 
-var XLSX2Pappel = function (_Converter) {
-  _inherits(XLSX2Pappel, _Converter);
+var Strings2Pappel = function (_Converter) {
+  _inherits(Strings2Pappel, _Converter);
 
-  function XLSX2Pappel(params) {
-    _classCallCheck(this, XLSX2Pappel);
+  function Strings2Pappel(params) {
+    _classCallCheck(this, Strings2Pappel);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(XLSX2Pappel).call(this, params));
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Strings2Pappel).call(this, params));
 
     _this._logger.setPrefix({
-      prefix: 'Pappel.Converter.XLSX2Pappel'
+      prefix: 'Pappel.Converter.Strings2Pappel'
     });
-    _this._keys = new _Keys2.default(params);
+    _this._strings = Strings;
     return _this;
   }
+
+  /**
+   * @property _xml
+   * @private
+   */
 
   /**
    * @method convert 
    *
    * @param {Object} params
-   * @param {Object} params.workbook
+   * @param {Object} params.stringsString
+   * @param {String} params.language
    */
 
 
-  _createClass(XLSX2Pappel, [{
+  _createClass(Strings2Pappel, [{
     key: 'convert',
     value: function convert(params) {
-      var _this2 = this;
-
       this._logger.info('>> #convert');
       var o = params || {},
-          workbook = o.workbook || null;
+          stringsString = o.stringsString || null,
+          language = o.language || null,
+          strings = null,
+          pappel = {};
 
-      if (workbook === null) {
+      if (stringsString === null) {
         return null;
       }
 
-      var first_sheet_name = workbook.SheetNames[0];
-      var worksheet = workbook.Sheets[first_sheet_name];
-      var json = XLSX.utils.sheet_to_json(worksheet);
+      if (language === null) {
+        return null;
+      }
 
-      var newJson = {};
-      var columns = [];
+      strings = this._strings.parse(stringsString);
 
-      json.forEach(function (line) {
-        //console.log('Pappel.Converter.XLSX2Pappel#convert line', line);
-        if (line.key.substr(0, 2) == '//') {
-          return;
-        }
-        var safeKey = _this2._keys.getSafeKey({
-          key: line.key
-        });
-        newJson[safeKey] = {};
-        for (var i in line) {
-          if (i !== 'key') {
-            newJson[safeKey][i] = line[i].replace(/{{[\w ]+}}/gi, '%@');
+      /*var inspect = require('util').inspect;
+      console.log(inspect(xml, {
+        colors: true,
+        depth: Infinity
+      }));*/
 
-            if (columns.indexOf(i) === -1) {
-              columns.push(i);
-            }
-          }
-        }
-      });
+      for (var key in strings) {
+        pappel[key] = {};
+        pappel[key][language] = strings[key];
+      }
+
+      //console.log('Strings2Pappel#convert strings', strings);
 
       this._logger.info('<< #convert');
-      return newJson;
+      return pappel;
     }
   }]);
 
-  return XLSX2Pappel;
+  return Strings2Pappel;
 }(_Root2.default);
 
-module.exports = XLSX2Pappel;
+module.exports = Strings2Pappel;

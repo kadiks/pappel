@@ -5,7 +5,7 @@ var
 
 describe('Pappel2ReactNativeLocalization', function() {
 
-  var libLocation = ['../../..', libSource, 'converters/Pappel2ReactNativeLocalization'].join('/'),
+  var libLocation = ['../../..', libSource, 'converter/Pappel2ReactNativeLocalization'].join('/'),
     Converter = require(libLocation),
     fixturePath = [__dirname, '../..', 'fixtures/'].join('/'),
     fs = require('fs'),
