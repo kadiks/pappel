@@ -21,7 +21,7 @@
     "test-p2rnloc": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2ReactNativeLocalization.js || true",
     "babel-build": "./node_modules/babel-cli/bin/babel.js ./lib --out-dir ./build",
     "doc": "npm run babel-build ; jsduck --config jsduck.json",
-    "release": "npm run babel-build ; npm run doc"
+    "release": "npm run doc"
   },
   "repository": {
     "type": "git",

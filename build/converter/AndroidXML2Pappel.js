@@ -69,11 +69,11 @@ var AndroidXML2Pappel = function (_Converter) {
 
       xml = this._xml(xmlString);
 
-      var inspect = require('util').inspect;
+      /*var inspect = require('util').inspect;
       console.log(inspect(xml, {
         colors: true,
         depth: Infinity
-      }));
+      }));*/
 
       var xmlArray = xml.root.children;
 
