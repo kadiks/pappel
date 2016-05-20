@@ -1,0 +1,1 @@
+node ./bin/index.js --input ./test/fixtures/XLSX2.xlsx --output-dir ./test/output/ --output-file I18n.js --input-format xlsx --output-format react-native-localization

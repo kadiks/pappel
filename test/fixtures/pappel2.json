@@ -1,0 +1,6 @@
+{
+  "hello_x": {
+    "fr": "Bonjour ${$1}!",
+    "en": "Hello ${$1}!"
+  }
+}

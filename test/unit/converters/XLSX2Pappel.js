@@ -43,7 +43,7 @@ describe('XLSX2Pappel', function() {
           'en': 'Hello!'
         },
         'hello_you': {
-          'fr': 'Bonjout toi !',
+          'fr': 'Bonjour toi !',
           'en': 'Hello you!'
         }
       });

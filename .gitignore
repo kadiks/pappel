@@ -16,6 +16,7 @@ test/coverage.html
 test-cov/*
 covreporter.html
 test/unit-cov/*
+output/*
 
 dump/*
 test/prototype/*

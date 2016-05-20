@@ -1,0 +1,10 @@
+{
+  "hello": {
+    "fr": "Bonjour !",
+    "en": "Hello!"
+  },
+  "hello_you": {
+    "fr": "Bonjout toi !",
+    "en": "Hello you!"
+  }
+}

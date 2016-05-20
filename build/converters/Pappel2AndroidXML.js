@@ -6,6 +6,10 @@ var _Root = require('./Root');
 
 var _Root2 = _interopRequireDefault(_Root);
 
+var _Vars = require('../Vars');
+
+var _Vars2 = _interopRequireDefault(_Vars);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16,6 +20,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @class Pappel.Converter.Pappel2AndroidXML
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 *
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @extends Pappel.Converter.Root
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                * @use Pappel.Vars
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
 
 
@@ -30,20 +35,21 @@ var Pappel2AndroidXML = function (_Converter) {
     _this._logger.setPrefix({
       prefix: 'Pappel.Converter.Pappel2AndroidXML'
     });
+    _this._vars = new _Vars2.default();
     return _this;
   }
 
-  /**
-   * @method convert 
-   *
-   * @param {Object} params
-   * @param {Object} params.pappel
-   * @param {String} [params.language='']
-   */
-
-
   _createClass(Pappel2AndroidXML, [{
     key: 'convert',
+
+
+    /**
+     * @method convert 
+     *
+     * @param {Object} params
+     * @param {Object} params.pappel
+     * @param {String} [params.language='']
+     */
     value: function convert(params) {
       this._logger.info('>> #convert');
       var o = params || {},
@@ -64,12 +70,42 @@ var Pappel2AndroidXML = function (_Converter) {
       var file = '';
 
       for (var key in pappel) {
-        file += ["\t", '<string name="', key, '">', pappel[key][language], '</string>', "\r\n"].join('');
+        var transformedString = this.transformString({
+          str: pappel[key][language]
+        });
+        file += ["\t", '<string name="', key, '">', transformedString, '</string>', "\r\n"].join('');
       }
 
-      file = '<?xml version="1.0" encoding="utf-8"?>' + "\r\n" + '<resources>' + "\r\n" + file + '</resources>';
       this._logger.info('<< #convert');
       return file;
+    }
+
+    /**
+     * @method transformString
+     * 
+     * @param {Object} params
+     * @param {String} params.str
+     */
+
+  }, {
+    key: 'transformString',
+    value: function transformString(params) {
+      this._logger.info('>> #transformString');
+      var tStr = this._vars.transformAnonymousPappel2AndroidXML({
+        str: params.str
+      });
+      this._logger.info('<< #transformString');
+      return tStr;
+    }
+  }, {
+    key: 'contentBoilerplateBefore',
+    get: function get() {
+      return '<?xml version="1.0" encoding="utf-8"?>' + "\r\n" + '<resources>' + "\r\n";
+    }
+  }, {
+    key: 'contentBoilerplateAfter',
+    get: function get() {
+      return '</resources>';
     }
   }]);
 
