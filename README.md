@@ -1,6 +1,6 @@
 # Pappel
 
-Babbel for apps
+Babel for apps
 Localization library
 
 ## CLI
