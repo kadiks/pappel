@@ -20,7 +20,7 @@
     "test-p2android": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2AndroidXML.js || true",
     "test-p2rnloc": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2ReactNativeLocalization.js || true",
     "babel-build": "./node_modules/babel-cli/bin/babel.js ./lib --out-dir ./build",
-    "doc": "npm run babel-build ; jsduck --config jsduck.json",
+    "doc": "npm run babel-build ; jsduck --config docs/config.json; cp docs/monochrome-white-jsduck.png ../pappel-doc/resources/images/logo.png ; cp docs/favicon.ico ../pappel-doc/favicon.ico",
     "release": "npm run doc"
   },
   "repository": {
