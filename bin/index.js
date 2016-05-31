@@ -12,7 +12,7 @@ var loggerLevel = 8;
 var NECESSARY_OPTS = ['input-format', 'input', 'output-file'];
 var INPUT_FORMATS = ['xlsx', 'android', 'androidxml', 'ios', 'strings'];
 var OUTPUT_FORMATS = ['strings', 'ios', 'android', 'androidxml', 'pappel', 'json', 'react-native-localization'];
-var BACK_TO_ROOT_PATH = '/../';
+var ROOT_PATH = process.cwd();
 
 
 logger.setPrefix({
@@ -42,9 +42,17 @@ if (OUTPUT_FORMATS.indexOf(argv['output-format']) === -1) {
 var pappel = null,
   converter2Pappel = null;
 
+var getPath = function(pathname) {
+  if (pathname.substr(0, 1) === '/') {
+    return path;
+  }
+  return path.normalize(ROOT_PATH + '/' + pathname);
+};
+
 // INPUT
 
-var inputFullPath = __dirname + BACK_TO_ROOT_PATH + argv['input'];
+
+var inputFullPath = getPath(argv['input']);
 inputFullPath = path.normalize(inputFullPath);
 
 var converterOpts = {
@@ -119,7 +127,7 @@ switch (argv['output-format']) {
 
 // SAVE
 
-var outputFullPath = __dirname + BACK_TO_ROOT_PATH + argv['output-dir'] + argv['output-file'];
+var outputFullPath = getPath(argv['output-dir'] + argv['output-file']);
 outputFullPath = path.normalize(outputFullPath);
 
 fs.writeFileSync(outputFullPath, converterFinal.wrapContent({

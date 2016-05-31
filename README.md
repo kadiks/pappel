@@ -1,11 +1,12 @@
-# Pappel
+Pappel
+Localization and format conversion tooling
 
-Babel for apps
-Localization library
+A revival of the Babel tower, for your apps.
 
-## CLI
 
-### Options
+# CLI
+
+## Options
 
 - input-format (xlsx|android|ios)
 - output-format (pappel|android|ios|react-native-localization)
@@ -14,12 +15,22 @@ Localization library
 - output-dir [output direction path]
 - output-file [name of the output file with extension]
 
-## Roadmap
+# Changelog
 
-- [x] AndroidXML2Pappel
-- [x] Strings2Pappel
+## v0.1.1
+
+- Fix the CLI path
+
+## v0.1.0
+
+- AndroidXML2Pappel
+- Strings2Pappel
+- XLSX2Pappel
+- Pappel2AndroidXML
+- Pappel2Strings
+- Pappel2ReactNativeLocalization
+
+
+# Roadmap
+
 - [ ] tests for /bin/index.js (CLI)
-- [x] XLSX2Pappel
-- [x] Pappel2AndroidXML
-- [x] Pappel2Strings
-- [x] Pappel2ReactNativeLocalization
