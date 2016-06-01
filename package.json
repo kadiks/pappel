@@ -21,6 +21,9 @@
     "test-p2rnloc": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2ReactNativeLocalization.js || true",
     "babel-build": "./node_modules/babel-cli/bin/babel.js ./lib --out-dir ./build",
     "doc": "npm run babel-build ; jsduck --config docs/config.json; cp docs/monochrome-white-jsduck.png ../pappel-doc/resources/images/logo.png ; cp docs/favicon.ico ../pappel-doc/favicon.ico",
+    "cov": "npm run precov ; PAPPEL_COV=1 ./node_modules/mocha/bin/mocha test/unit/ --recursive -R html-cov > ./test/output/coverage.html || true ; npm run postcov",
+    "precov": "jscover --no-highlight ./build/ ./build-cov/",
+    "postcov": "rm -rf ./build-cov/",
     "release": "npm run doc"
   },
   "repository": {
