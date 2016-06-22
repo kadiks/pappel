@@ -8,14 +8,16 @@ A revival of the Babel tower, for your apps.
 
 ## Options
 
-- input-format (xlsx|android|ios)
-- output-format (pappel|android|ios|react-native-localization)
-- lang [2 letter ISO code]
 - input [source file path]
-- output-dir [output direction path]
-- output-file [name of the output file with extension]
+- output-format (pappel|android|ios|react-native-localization)
+- [input-format] (xlsx|android|ios)
+- [lang=''] [2 letter ISO code]
+- [output-dir='.'] [output direction path]
+- [output-file] [name of the output file with extension]
 
 # Changelog
+
+##
 
 ## v0.1.1
 
