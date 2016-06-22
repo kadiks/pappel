@@ -41,11 +41,11 @@ var AndroidXML2Pappel = function (_Converter) {
    */
 
   /**
-   * @method convert 
+   * @method convert
    *
    * @param {Object} params
    * @param {Object} params.xmlString
-   * @param {String} params.language
+   * @param {String} [params.language='en']
    */
 
 
@@ -55,7 +55,7 @@ var AndroidXML2Pappel = function (_Converter) {
       this._logger.info('>> #convert');
       var o = params || {},
           xmlString = o.xmlString || null,
-          language = o.language || null,
+          language = o.language || 'en',
           xml = null,
           pappel = {};
 

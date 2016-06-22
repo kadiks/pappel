@@ -41,6 +41,27 @@ describe('Pappel2Strings', function() {
       }).should.eql('"hello" = "Bonjour %@ !";' + "\r\n");
 
     });
+    it('should convert the content without the language parameter', function(){
+      var conv = new Converter();
+      conv.convert({
+        pappel: {
+          hello: {
+            en: 'Hello!',
+            fr: 'Bonjour !'
+          }
+        }
+      }).should.eql('"hello" = "Hello!";' + "\r\n");
+    });
+    it('should convert the content without the language parameter and one language in pappel', function(){
+      var conv = new Converter();
+      conv.convert({
+        pappel: {
+          hello: {
+            en: 'Hello!'
+          }
+        }
+      }).should.eql('"hello" = "Hello!";' + "\r\n");
+    });
   });
 
   describe('#transformString', function() {

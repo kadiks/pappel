@@ -17,7 +17,10 @@ A revival of the Babel tower, for your apps.
 
 # Changelog
 
-##
+## v0.1.2
+
+- CLI: Only the parameters [input] & [output-format] become required
+- AndroidXML & iOS importer language default to 'en'
 
 ## v0.1.1
 

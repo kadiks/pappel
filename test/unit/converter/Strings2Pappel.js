@@ -32,6 +32,24 @@ describe('Strings2Pappel', function() {
 
     });
 
+    it('should convert without [language] param and default to "en"', function() {
+      var conv = new Converter();
+      var inputPath = path.normalize(fixturePath + 'Localizable1.strings');
+      var strings = fs.readFileSync(inputPath, 'utf8');
+      //console.log('XLSX2PappelTest#convert inputPath', inputPath);
+      conv.convert({
+        stringsString: strings
+      }).should.eql({
+        'hello': {
+          'en': 'Bonjour !'
+        },
+        'hello_you': {
+          'en': 'Bonjour toi !'
+        }
+      });
+
+    });
+
   });
 
 });

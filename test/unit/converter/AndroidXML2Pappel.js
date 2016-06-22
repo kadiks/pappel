@@ -33,6 +33,24 @@ describe('AndroidXML2Pappel', function() {
 
     });
 
+    it('should convert without the [language] param and default to "en"', function() {
+      var conv = new Converter();
+      var inputPath = path.normalize(fixturePath + 'strings1.xml');
+      var xml = fs.readFileSync(inputPath, 'utf8');
+      //console.log('XLSX2PappelTest#convert inputPath', inputPath);
+      conv.convert({
+        xmlString: xml
+      }).should.eql({
+        'hello': {
+          'en': 'Bonjour !'
+        },
+        'hello_you': {
+          'en': 'Bonjour toi !'
+        }
+      });
+
+    });
+
   });
 
 });

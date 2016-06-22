@@ -45,6 +45,22 @@ describe('Pappel2AndroidXML', function() {
 
     });
 
+    it('should convert the content without the language parameter', function() {
+      var conv = new Converter();
+      //var inputPath = path.normalize(fixturePath + 'pappel1.json');
+      //var json = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
+      //console.log('XLSX2PappelTest#convert inputPath', inputPath);
+      conv.convert({
+        pappel: {
+          'hello': {
+            'en': 'Hello!',
+            'fr': 'Bonjour !'
+          }
+        }
+      }).should.eql("\t" + '<string name="hello">Hello!</string>' + "\r\n");
+
+    });
+
   });
 
   describe('#transformString', function() {

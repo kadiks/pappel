@@ -41,11 +41,11 @@ var Strings2Pappel = function (_Converter) {
    */
 
   /**
-   * @method convert 
+   * @method convert
    *
    * @param {Object} params
    * @param {Object} params.stringsString
-   * @param {String} params.language
+   * @param {String} [params.language='en']
    */
 
 
@@ -55,7 +55,7 @@ var Strings2Pappel = function (_Converter) {
       this._logger.info('>> #convert');
       var o = params || {},
           stringsString = o.stringsString || null,
-          language = o.language || null,
+          language = o.language || 'en',
           strings = null,
           pappel = {};
 
