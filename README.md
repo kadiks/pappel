@@ -3,6 +3,10 @@ Localization and format conversion tooling
 
 A revival of the Babel tower, for your apps.
 
+---
+***Please, tell us about your experience with the library on Twitter [@pappel_io](https://twitter.com/pappel_io)***
+---
+
 # Installation
 
 ```javascript
@@ -41,6 +45,11 @@ pappel --input Localizable.strings --output-format android
 ```
 pappel --input spreadsheet.xlsx --output-format react-native-localization
 ```
+
+---
+***Please, tell us about your experience with the library on Twitter [@pappel_io](https://twitter.com/pappel_io)***
+---
+
 # API
 
 ## Examples
@@ -64,6 +73,10 @@ var fileContent = exporter.wrapContent({
 });
 fs.writeFileSync('./Localizable.strings', fileContent, 'utf8');
 ```
+
+---
+***Please, tell us about your experience with the library on Twitter [@pappel_io](https://twitter.com/pappel_io)***
+---
 
 # Changelog
 
