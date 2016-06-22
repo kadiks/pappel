@@ -14,33 +14,32 @@ Remove the ```-g``` if you do not plan on using the CLI
 
 ## Options
 
-- input [source file path]
-- output-format (pappel|android|ios|react-native-localization)
-- [input-format] (xlsx|android|ios)
-- [lang=''] [2 letter ISO code]
-- [output-dir='.'] [output direction path]
-- [output-file] [name of the output file with extension]
+- input - [source file path]
+- output-format - (pappel|android|ios|react-native-localization)
+- [input-format] - (xlsx|android|ios)
+- [lang=''] - [2 letter ISO code]
+- [output-dir='.'] - [output direction path]
+- [output-file] - [name of the output file with extension]
 
 ## Examples
 
 ### Android (xml) 2 iOS (strings)
-
+```
 pappel --input strings.xml --output-format ios
-
+```
 ### iOS (strings) 2 Android (xml)
-
+```
 pappel --input Localizable.strings --output-format android
-
+```
 ### XLSX 2 React Native Localization
-
+```
 pappel --input spreadsheet.xlsx --output-format react-native-localization
-
+```
 # API
 
 ## Examples
 
 ### Android (xml) 2 iOS (strings)
-
 ```js
 var Pappel = require('pappel');
 
