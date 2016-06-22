@@ -12,6 +12,12 @@ Remove the ```-g``` if you do not plan on using the CLI
 
 # CLI
 
+## Usage
+
+```
+pappel --input <path> --output-format <output-format> [--input-format <input-format>] [--lang <lang>] [--output-dir <path>] [--output-file <filename.ext>]
+```
+
 ## Options
 
 - input - [source file path]
