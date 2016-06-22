@@ -1,6 +1,6 @@
 {
   "name": "pappel",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Babbel for apps. Localization library",
   "main": "index.js",
   "directories": {
