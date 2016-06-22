@@ -78,6 +78,8 @@ var fileContent = exporter.wrapContent({
 fs.writeFileSync('./Localizable.strings', fileContent, 'utf8');
 ```
 
+More in the [API docs](http://docs.pappel.io/)
+
 ---
 
 ***Please, tell us about your experience with the library on Twitter [@pappel_io](https://twitter.com/pappel_io)***
