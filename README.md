@@ -78,7 +78,7 @@ var fileContent = exporter.wrapContent({
 fs.writeFileSync('./Localizable.strings', fileContent, 'utf8');
 ```
 
-More in the [API docs](http://docs.pappel.io/)
+More in the [API docs](http://docs.pappel.io/latest/)
 
 ---
 
@@ -92,6 +92,7 @@ More in the [API docs](http://docs.pappel.io/)
 
 - CLI: Only the parameters [input] & [output-format] become required
 - AndroidXML & iOS importer language default to 'en'
+- Improved doc
 
 ## v0.1.1
 
