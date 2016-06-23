@@ -70,7 +70,7 @@ var pappelFormat = importer.convert({
 
 var exporter = new Pappel.Converter.Pappel2Strings();
 var content = exporter.convert({
-  pappel: pappel
+  pappel: pappelFormat
 });
 var fileContent = exporter.wrapContent({
   content : content
