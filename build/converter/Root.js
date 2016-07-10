@@ -11,7 +11,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @uses Pappel.Vars
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       *
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       * @param {Object} params
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @param {Number} params.loggerLevel
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @param {String} [params.language='en']
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @param {String} [params.targetLanguage='']
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @param {Number} [params.loggerLevel=8]
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */
 
 var _skzLogger = require('skz-logger');
@@ -34,7 +36,9 @@ var Converter = function () {
   function Converter(params) {
     _classCallCheck(this, Converter);
 
-    var o = params || {};
+    var o = params || {},
+        language = o.language || null,
+        targetLanguage = o.targetLanguage || null;
 
     this._logger = new _skzLogger2.default();
     this._logger.setPrefix({
@@ -48,10 +52,29 @@ var Converter = function () {
     this._vars = new _Vars2.default(params);
 
     this._keys = new _Keys2.default(params);
+
+    this._language = 'en';
+    if (language !== null) {
+      this._language = language;
+    }
+    this._targetLanguage = null;
+    if (targetLanguage !== null) {
+      this._targetLanguage = targetLanguage;
+    }
   }
 
   /**
    * @property _logger
+   * @protected
+   */
+
+  /**
+   * @property _language Act as [sourceLanguage]
+   * @protected
+   */
+
+  /**
+   * @property _targetLanguage
    * @protected
    */
 
@@ -61,7 +84,7 @@ var Converter = function () {
    */
 
   /**
-   * @method wrapFile Wrap the content of the file with the necessary to validate the format
+   * @method wrapContent Wrap the content of the file with the necessary to validate the format
    *
    * @param {Object} params
    * @param {String} params.content

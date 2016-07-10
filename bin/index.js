@@ -10,8 +10,14 @@ var logger = new Logger();
 var loggerLevel = 8;
 
 var PATH_SEPARATOR = path.sep;
-var NECESSARY_OPTS = ['input-format', 'input', 'output-file'];
-var INPUT_FORMATS = ['xlsx', 'android', 'androidxml', 'ios', 'strings'];
+var INPUT_FORMATS = [
+  'xlsx',
+  'android',
+  'androidxml',
+  'ios',
+  'strings',
+  'xliff'
+];
 var OUTPUT_FORMATS = [
   'strings',
   'ios',
@@ -19,10 +25,12 @@ var OUTPUT_FORMATS = [
   'androidxml',
   'pappel',
   'json',
-  'react-native-localization'
+  'react-native-localization',
+  'xliff'
 ];
 var EXT2FORMAT = {
-  'xml' : 'android'
+  'xml' : 'android',
+  'xlf' : 'xliff'
 };
 var FORMAT2EXT = {
   'android' : 'xml',
@@ -30,7 +38,8 @@ var FORMAT2EXT = {
   'ios' : 'strings',
   'pappel' : 'json',
   'json' : 'json',
-  'react-native-localization' : 'js'
+  'react-native-localization' : 'js',
+  'xliff' : 'xlf'
 };
 var ROOT_PATH = process.cwd();
 
@@ -168,6 +177,12 @@ switch (inputFormat) {
       language: language
     });
     break;
+  case 'xliff':
+    converter2Pappel = new Pappel.Converter.XLIFF2Pappel(converterOpts);
+    pappel = converter2Pappel.convert({
+      xmlString: fs.readFileSync(inputFullPath, 'utf8')
+    });
+    break;
 }
 
 logger.debug('pappel:', JSON.stringify(pappel));
@@ -202,6 +217,13 @@ switch (outputFormat) {
   case 'ios':
   case 'strings':
     converterFinal = new Pappel.Converter.Pappel2Strings();
+    if (argv['lang']) {
+      outputOpts.language = argv['lang'];
+    }
+    content = converterFinal.convert(outputOpts);
+    break;
+  case 'xliff':
+    converterFinal = new Pappel.Converter.Pappel2XLIFF();
     if (argv['lang']) {
       outputOpts.language = argv['lang'];
     }

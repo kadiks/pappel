@@ -27,8 +27,8 @@ pappel --input <path> --output-format <output-format> [--input-format <input-for
 ## Options
 
 - input - [source file path]
-- output-format - (pappel|android|ios|react-native-localization)
-- [input-format] - (xlsx|android|ios)
+- output-format - (pappel|android|ios|xliff|react-native-localization)
+- [input-format] - (xlsx|android|ios|xliff)
 - [lang=''] - [2 letter ISO code]
 - [output-dir='.'] - [output direction path]
 - [output-file] - [name of the output file with extension]
@@ -88,6 +88,10 @@ More in the [API docs](http://docs.pappel.io/latest/)
 
 # Changelog
 
+## v0.1.3
+
+- XLIFF (v1.2) converters
+
 ## v0.1.2
 
 - CLI: Only the parameters [input] & [output-format] become required
@@ -110,4 +114,6 @@ More in the [API docs](http://docs.pappel.io/latest/)
 
 # Roadmap
 
-- [ ] Add XLIFF support
+- [ ] Add SRT converter
+- [ ] Add VTT converter
+- [ ] Add PHP Array converter

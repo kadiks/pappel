@@ -1,6 +1,6 @@
 {
   "name": "pappel",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Babbel for apps. Localization library",
   "main": "index.js",
   "directories": {
@@ -16,8 +16,10 @@
     "test-xlsx2p": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/XLSX2Pappel.js || true",
     "test-android2p": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/AndroidXML2Pappel.js || true",
     "test-strings2p": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Strings2Pappel.js || true",
+    "test-xliff2p": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/XLIFF2Pappel.js || true",
     "test-p2strings": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2Strings.js || true",
     "test-p2android": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2AndroidXML.js || true",
+    "test-p2xliff": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2XLIFF.js || true",
     "test-p2rnloc": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2ReactNativeLocalization.js || true",
     "babel-build": "./node_modules/babel-cli/bin/babel.js ./lib --out-dir ./build",
     "doc": "npm run babel-build ; jsduck --config docs/config.json; cp docs/monochrome-white-jsduck.png ../pappel-doc/resources/images/logo.png ; cp docs/favicon.ico ../pappel-doc/favicon.ico",

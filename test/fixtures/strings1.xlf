@@ -1,0 +1,12 @@
+<xliff version="1.2">
+  <file source-language="en" tool="Pappel.io">
+    <body>
+      <trans-unit id="hello">
+        <source>Hello!</source>
+      </trans-unit>
+      <trans-unit id="hello_you">
+        <source>Hello you!</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
