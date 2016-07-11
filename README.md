@@ -114,6 +114,7 @@ More in the [API docs](http://docs.pappel.io/latest/)
 
 # Roadmap
 
+- [ ] Add XLIFF2 converter
 - [ ] Add SRT converter
 - [ ] Add VTT converter
 - [ ] Add PHP Array converter
