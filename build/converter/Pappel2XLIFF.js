@@ -90,7 +90,7 @@ var Pappel2XLIFF = function (_Converter) {
   }, {
     key: 'contentBoilerplateBefore',
     get: function get() {
-      return '<xliff version="1.2">' + "\r\n\t" + '<file source-language="' + this._language + '" tool="Pappel.io">' + "\r\n\t\t" + '<body>' + "\r\n";
+      return '<?xml version="1.0" encoding="utf-8"?>' + "\r\n" + '<xliff version="1.2">' + "\r\n\t" + '<file source-language="' + this._language + '" tool="Pappel.io">' + "\r\n\t\t" + '<body>' + "\r\n";
     }
   }, {
     key: 'contentBoilerplateAfter',

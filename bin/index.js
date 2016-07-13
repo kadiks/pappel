@@ -88,6 +88,11 @@ var
   outputFile = argv['output-file'] || null
 ;
 
+if (argv['v']) {
+  var packageJson = require('../package.json');
+  console.log('Pappel v' + packageJson.version);
+  return;
+}
 
 if (input === null) {
   console.log('The [input] parameter is required.');

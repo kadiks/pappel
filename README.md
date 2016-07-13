@@ -88,6 +88,10 @@ More in the [API docs](http://docs.pappel.io/latest/)
 
 # Changelog
 
+## v.0.2.0
+
+- Add the "-v" option
+
 ## v0.1.3
 
 - XLIFF (v1.2) converters
