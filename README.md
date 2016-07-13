@@ -32,6 +32,7 @@ pappel --input <path> --output-format <output-format> [--input-format <input-for
 - [lang=''] - [2 letter ISO code]
 - [output-dir='.'] - [output direction path]
 - [output-file] - [name of the output file with extension]
+- [w] - Watch your file
 
 ## Examples
 
@@ -90,7 +91,8 @@ More in the [API docs](http://docs.pappel.io/latest/)
 
 ## v.0.2.0
 
-- Add the "-v" option
+- Add the "--v" option
+- Watcher option
 
 ## v0.1.3
 

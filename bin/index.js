@@ -5,6 +5,7 @@ var XLSX = require('xlsx');
 var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
 var path = require('path');
+var execshell = require('exec-sh');
 var Logger = require('skz-logger');
 var logger = new Logger();
 var loggerLevel = 8;
@@ -85,7 +86,8 @@ var
   inputFormat = argv['input-format'] || null,
   outputFormat = argv['output-format'] || null,
   outputDir = argv['output-dir'] || ROOT_PATH,
-  outputFile = argv['output-file'] || null
+  outputFile = argv['output-file'] || null,
+  isWatch = argv['w'] ? true : false
 ;
 
 if (argv['v']) {
@@ -245,3 +247,18 @@ outputFullPath = path.normalize(outputFullPath);
 fs.writeFileSync(outputFullPath, converterFinal.wrapContent({
   content: content
 }), 'utf8');
+
+if (isWatch) {
+  console.log('Pappel is watching o_o');
+  fs.watchFile(inputFullPath, () => {
+    console.log('Watch update...');
+    var cmd = ['pappel'];
+    for (var key in argv) {
+      if (key !== '_' && key !== 'w') {
+        cmd.push('--' + key);
+        cmd.push(argv[key]);
+      }
+    }
+    execshell(cmd.join(' '));
+  });
+}

@@ -65,6 +65,7 @@
     "should": "^8.3.1"
   },
   "dependencies": {
+    "exec-sh": "^0.2.0",
     "i18n-strings-files": "^1.0.2",
     "minimist": "^1.2.0",
     "skz-logger": "git://github.com/kadiks/skz-logger.git",
