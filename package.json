@@ -1,7 +1,7 @@
 {
   "name": "pappel",
   "version": "0.1.3",
-  "description": "Babbel for apps. Localization library",
+  "description": "CLI Localization library",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -22,7 +22,7 @@
     "test-p2xliff": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2XLIFF.js || true",
     "test-p2rnloc": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/converter/Pappel2ReactNativeLocalization.js || true",
     "babel-build": "./node_modules/babel-cli/bin/babel.js ./lib --out-dir ./build",
-    "doc": "npm run babel-build ; jsduck --config docs/config.json; cp docs/monochrome-white-jsduck.png ../pappel-doc/resources/images/logo.png ; cp docs/favicon.ico ../pappel-doc/favicon.ico",
+    "doc": "npm run babel-build ; jsduck --config docs/config.json; cp docs/monochrome-white-jsduck.png ../../doc/pappel-doc/resources/images/logo.png ; cp docs/favicon.ico ../../doc/pappel-doc/favicon.ico",
     "cov": "npm run precov ; PAPPEL_COV=1 ./node_modules/mocha/bin/mocha test/unit/ --recursive -R html-cov > ./test/output/coverage.html || true ; npm run postcov",
     "precov": "jscover --no-highlight ./build/ ./build-cov/",
     "postcov": "rm -rf ./build-cov/",
