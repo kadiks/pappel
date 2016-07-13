@@ -78,7 +78,7 @@ describe('Pappel2XLIFF', function() {
       //console.log('XLSX2PappelTest#convert inputPath', inputPath);
       conv.wrapContent({
         content: content
-      }).should.eql('<xliff version="1.2">'+ "\r\n\t" +'<file source-language="en" tool="Pappel.io">'+ "\r\n\t\t" +'<body>' + "\r\n" + content + "\t\t" +'</body>'+ "\r\n\t" +'</file>'+ "\r\n" +'</xliff>');
+      }).should.eql('<?xml version="1.0" encoding="utf-8"?>' + "\r\n" + '<xliff version="1.2">'+ "\r\n\t" +'<file source-language="en" tool="Pappel.io">'+ "\r\n\t\t" +'<body>' + "\r\n" + content + "\t\t" +'</body>'+ "\r\n\t" +'</file>'+ "\r\n" +'</xliff>');
 
     });
 
