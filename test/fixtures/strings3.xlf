@@ -1,0 +1,17 @@
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0"
+ srcLang="en" trgLang="fr" tool="Pappel.io">
+ <file>
+  <unit id="hello">
+   <segment>
+    <source>Hello!</source>
+    <target>Bonjour !</target>
+   </segment>
+  </unit>
+  <unit id="hello_you">
+   <segment>
+    <source>Hello you!</source>
+    <target>Bonjour toi !</target>
+   </segment>
+  </unit>
+ </file>
+</xliff>

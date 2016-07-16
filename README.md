@@ -24,7 +24,7 @@ Remove the ```-g``` if you do not plan on using the CLI
 ## Usage
 
 ```
-pappel --input <path> --output-format <output-format> [--input-format <input-format>] [--lang <lang>] [--output-dir <path>] [--output-file <filename.ext>]
+pappel --input <path> --output-format <output-format> [--v] [--w] [--input-format <input-format>] [--lang <lang>] [--output-dir <path>] [--output-file <filename.ext>]
 ```
 
 ## Options
@@ -35,6 +35,7 @@ pappel --input <path> --output-format <output-format> [--input-format <input-for
 - [lang=''] - [2 letter ISO code]
 - [output-dir='.'] - [output direction path]
 - [output-file] - [name of the output file with extension]
+- [v] - Version of Pappel
 - [w] - Watch your file
 
 ## Examples
@@ -51,6 +52,10 @@ pappel --input Localizable.strings --output-format android
 ```
 pappel --input spreadsheet.xlsx --output-format react-native-localization
 ```
+### XLIFF 2 Android (xml)
+```
+pappel --input translation.xliff --output-format android
+```
 
 ---
 
@@ -66,15 +71,15 @@ pappel --input spreadsheet.xlsx --output-format react-native-localization
 ```js
 var Pappel = require('pappel');
 
-var importer = new Pappel.Converter.AndroidXML2Pappel();
+var importer = new Pappel.Importer.AndroidXML();
 var xmlString = fs.readFileSync('./strings.xml', 'utf8');
 var pappelFormat = importer.convert({
-  xmlString : xmlString
+  input : xmlString
 });
 
-var exporter = new Pappel.Converter.Pappel2Strings();
+var exporter = new Pappel.Exporter.Strings();
 var content = exporter.convert({
-  pappel: pappelFormat
+  input: pappelFormat
 });
 var fileContent = exporter.wrapContent({
   content : content
@@ -94,8 +99,12 @@ More in the [API docs](http://docs.pappel.io/latest/)
 
 ## v.0.2.0
 
-- Add the "--v" option
-- Watcher option
+### Breaking changes
+- Revamped API
+
+- Add the "v" flag
+- Watcher option ("w" flag)
+- XLIFF (v2.0) converters
 
 ## v0.1.3
 
