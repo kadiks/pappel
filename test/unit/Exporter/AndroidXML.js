@@ -5,6 +5,7 @@ var
 
 describe('Exporter.AndroidXML', function() {
 
+
   var libLocation = ['../../..', libSource, 'index'].join('/'),
     Pappel = require(libLocation),
     Converter = Pappel.Exporter.AndroidXML,
@@ -12,6 +13,8 @@ describe('Exporter.AndroidXML', function() {
     fs = require('fs'),
     path = require('path'),
     XLSX = require('xlsx');
+
+    //console.log('Pappel', Pappel.default.Exporter.AndroidXML);
 
   describe('#convert', function() {
 

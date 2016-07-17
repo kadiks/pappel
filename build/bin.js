@@ -1,9 +1,5 @@
 'use strict';
 
-var _build = require('../build');
-
-var _build2 = _interopRequireDefault(_build);
-
 var _xlsx = require('xlsx');
 
 var _xlsx2 = _interopRequireDefault(_xlsx);
@@ -29,6 +25,9 @@ var _skzLogger = require('skz-logger');
 var _skzLogger2 = _interopRequireDefault(_skzLogger);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Pappel = require('../build/index');
+
 
 var argv = (0, _minimist2.default)(process.argv.slice(2));
 var logger = new _skzLogger2.default();
@@ -165,14 +164,14 @@ var language = argv['lang'] || '';
 
 switch (inputFormat) {
   case 'xlsx':
-    importer = new _build2.default.Importer.XLSX(converterOpts);
+    importer = new Pappel.Importer.XLSX(converterOpts);
     pappel = importer.convert({
       input: _xlsx2.default.readFile(inputFullPath)
     });
     break;
   case 'android':
   case 'androidxml':
-    importer = new _build2.default.Importer.AndroidXML(converterOpts);
+    importer = new Pappel.Importer.AndroidXML(converterOpts);
     pappel = importer.convert({
       input: _fs2.default.readFileSync(inputFullPath, 'utf8'),
       language: language
@@ -180,14 +179,14 @@ switch (inputFormat) {
     break;
   case 'ios':
   case 'strings':
-    importer = new _build2.default.Importer.Strings(converterOpts);
+    importer = new Pappel.Importer.Strings(converterOpts);
     pappel = importer.convert({
       input: _fs2.default.readFileSync(inputFullPath, 'utf8'),
       language: language
     });
     break;
   case 'xliff':
-    importer = new _build2.default.Importer.XLIFF(converterOpts);
+    importer = new Pappel.Importer.XLIFF(converterOpts);
     pappel = importer.convert({
       input: _fs2.default.readFileSync(inputFullPath, 'utf8')
     });
@@ -210,12 +209,12 @@ switch (outputFormat) {
     content = JSON.stringify(pappel);
     break;
   case 'react-native-localization':
-    exporter = new _build2.default.Exporter.ReactNativeLocalization();
+    exporter = new Pappel.Exporter.ReactNativeLocalization();
     content = exporter.convert(outputOpts);
     break;
   case 'android':
   case 'androidxml':
-    exporter = new _build2.default.Exporter.AndroidXML();
+    exporter = new Pappel.Exporter.AndroidXML();
     if (argv['lang']) {
       outputOpts.language = argv['lang'];
     }
@@ -223,14 +222,14 @@ switch (outputFormat) {
     break;
   case 'ios':
   case 'strings':
-    exporter = new _build2.default.Exporter.Strings();
+    exporter = new Pappel.Exporter.Strings();
     if (argv['lang']) {
       outputOpts.language = argv['lang'];
     }
     content = exporter.convert(outputOpts);
     break;
   case 'xliff':
-    exporter = new _build2.default.Exporter.XLIFF();
+    exporter = new Pappel.Exporter.XLIFF();
     if (argv['lang']) {
       outputOpts.language = argv['lang'];
     }
