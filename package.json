@@ -1,6 +1,6 @@
 {
   "name": "pappel",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "CLI Localization library",
   "main": "./build/index.js",
   "directories": {
@@ -13,6 +13,7 @@
     "test": "npm run babel-build ; ./node_modules/mocha/bin/mocha test/unit/ --recursive -R min || true",
     "test-keys": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/Keys.js || true",
     "test-vars": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/Vars.js || true",
+    "test-report": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/Reporter.js || true",
     "test-xlsx2p": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/Importer/XLSX.js || true",
     "test-android2p": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/Importer/AndroidXML.js || true",
     "test-strings2p": "npm run babel-build ; ./node_modules/mocha/bin/mocha ./test/unit/Importer/Strings.js || true",

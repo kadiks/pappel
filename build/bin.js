@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 
 var _xlsx = require('xlsx');
@@ -26,7 +27,7 @@ var _skzLogger2 = _interopRequireDefault(_skzLogger);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Pappel = require('../build/index');
+var Pappel = require('../build/index'); // Fix the import for ES6
 
 
 var argv = (0, _minimist2.default)(process.argv.slice(2));
